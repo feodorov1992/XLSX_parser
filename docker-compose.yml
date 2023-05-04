@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    restart: unless-stopped
+    volumes:
+      - ./app:/app
+      - static-data:/vol/web
+  proxy:
+    build:
+      context: ./proxy
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    environment:
+      - APP_HOST=app
+      - APP_PORT=9000
+      - LISTEN_PORT=80
+    volumes:
+      - static-data:/vol/static
+
+volumes:
+  static-data:
