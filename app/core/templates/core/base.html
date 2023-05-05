@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        table td,
+        table th {
+            padding: 10px;
+        }
+
+        table.report {
+            width: 100%;
+        }
+
+        table.report th,
+        table.report td {
+            border: 1px solid black;
+        }
+
+        tr.total td {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><a href="{% url 'home' %}">Upload File</a></td>
+            <td><a href="{% url 'history' %}">Upload History</a></td>
+        </tr>
+    </table>
+    <br>
+    {% block content %}{% endblock %}
+</body>
+</html>

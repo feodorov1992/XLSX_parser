@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block title %}Upload history{% endblock %}
+{% block content %}
+    <table>
+        {% if object_list.exists %}
+        <thead>
+            <tr>
+                <th>File name</th>
+                <th>Uploaded at</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+            <tr>
+                <td>{{ object.file_name }}</td>
+                <td>{{ object.created_at|date:"d.m.Y H:i:s" }}</td>
+                <td><a href="{% url 'detail' pk=object.pk %}">Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <h3>You haven't uploaded anything yet!</h3>
+        {% endif %}
+    </table>
+{% endblock %}

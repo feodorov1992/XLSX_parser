@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% block title %}{{ object.file_name }}{% endblock %}
+{% block content %}
+    <table class="report">
+        <thead>
+            <tr>
+                <th rowspan="3">Date</th>
+                <th colspan="4">Fact</th>
+                <th colspan="4">Forecast</th>
+            </tr>
+            <tr>
+                <th colspan="2">Qliq</th>
+                <th colspan="2">Qoil</th>
+                <th colspan="2">Qliq</th>
+                <th colspan="2">Qoil</th>
+            </tr>
+            <tr>
+                <th>data1</th>
+                <th>data2</th>
+                <th>data1</th>
+                <th>data2</th>
+                <th>data1</th>
+                <th>data2</th>
+                <th>data1</th>
+                <th>data2</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in statistics %}
+            <tr>
+                <td>{{ i.date|date:"d.m.Y" }}</td>
+                <td>{{ i.fact_qliq_data1|floatformat:-2 }}</td>
+                <td>{{ i.fact_qliq_data2|floatformat:-2 }}</td>
+                <td>{{ i.fact_qoil_data1|floatformat:-2 }}</td>
+                <td>{{ i.fact_qoil_data2|floatformat:-2 }}</td>
+                <td>{{ i.forecast_qliq_data1|floatformat:-2 }}</td>
+                <td>{{ i.forecast_qliq_data2|floatformat:-2 }}</td>
+                <td>{{ i.forecast_qoil_data1|floatformat:-2 }}</td>
+                <td>{{ i.forecast_qoil_data2|floatformat:-2 }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="total">
+                <td>Total</td>
+                <td>{{ total.fact_qliq_data1|floatformat:-2 }}</td>
+                <td>{{ total.fact_qliq_data2|floatformat:-2 }}</td>
+                <td>{{ total.fact_qoil_data1|floatformat:-2 }}</td>
+                <td>{{ total.fact_qoil_data2|floatformat:-2 }}</td>
+                <td>{{ total.forecast_qliq_data1|floatformat:-2 }}</td>
+                <td>{{ total.forecast_qliq_data2|floatformat:-2 }}</td>
+                <td>{{ total.forecast_qoil_data1|floatformat:-2 }}</td>
+                <td>{{ total.forecast_qoil_data2|floatformat:-2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
